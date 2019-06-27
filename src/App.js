@@ -7,21 +7,23 @@ import Reset from './reset.js';
 
 
 class App extends Component {
-  state = { time: 0 };
+  state = { time: 0, run: false };
   
   counter = 0;
 
   updateTime() {
     const newTime = this.state.time + 1;
     this.setState(() => {
-      return {time: newTime};
+      return {time: newTime, run: true};
     })
   }
   
   start() {
-    this.counter = setInterval(() => {
-      this.updateTime()}, 1000);
-    return this.counter;
+    if (!this.state.run) {
+      this.counter = setInterval(() => {
+        this.updateTime()}, 1000);
+      return this.counter;
+    }
   };
 
   stop() {
