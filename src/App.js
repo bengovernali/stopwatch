@@ -24,16 +24,19 @@ class App extends Component {
         this.updateTime()}, 1000);
       return this.counter;
     }
-  };
+  }
 
   stop() {
-    clearInterval(this.counter)
+    clearInterval(this.counter);
+    this.setState(() => {
+      return {run: false}
+    })
   }
 
   reset() {
     this.stop();
     this.setState(() => {
-      return {time: 0};
+      return {time: 0, run: false};
     })
   }
   
